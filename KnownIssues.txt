@@ -1,0 +1,18 @@
+Known Issues for the RSS2HTMLPro and MultiRSS2HTML.
+----------------------------------------------------
+
+Issue #1:
+msxml4.dll error 80070005 Access denied
+
+Solution:
+You must have MSXML4 SP2 installed. Read the release notes; toward the end it explains your problem (see also below).
+Note that I haven't figured out how to fix it on Win2K, but the "Resultant Set of Policy Wizard" (MMC Snapin) appears
+to be the solution for XP and 2K3.
+
+Security tightened when posting data using the ServerXmlHttp object 
+Security in the implementation of the MSXML 4.0 SP2 ServerXmlHttp object has been enhanced to check the Internet Explorer
+security policy setting for submitting non-encrypted form data. A security policy setting of "Disable" or "Prompt" for the
+"Submit nonencrypted form data" option will result in an "Access Denied" error message when attempting to post form data
+using the ServerXmlHttp object. This is a change that can potentially break existing code that uses earlier versions of the
+ServerXmlHttp object (such as prior released versions of both MSXML 3.0 and MSXML 4.0) to post form data when the
+Internet Explorer security policy setting for submitting non-encrypted form data is not enabled.

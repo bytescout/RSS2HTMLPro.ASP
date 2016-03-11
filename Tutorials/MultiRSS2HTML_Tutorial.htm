@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>MultiRSS2HTML Tutorial</title>
+</head>
+<body>
+    <div>
+        
+  <h1> MultiRSS2HTML.asp Tutorial</h1>
+        This is a quick start tutorial on converting and filtering mutliple RSS 
+  feeds into HTML code using MultiRSS2HTML ASP script in ASP or ASP.NET environment. 
+  This script is included into commercial &quot;Pro&quot; version of freeware 
+  RSS2HTML.asp script. 
+  <p> This script can be used standalone or incorporated into exisisting web-page.</p>
+  <div>
+    <p><strong>Benefits</strong> of PRO version:</p>
+  </div>
+  <ul>
+    <li> 
+      <div>better support for RSS and ATOM feeds;</div>
+    </li>
+    <li>multi-keywords filtering support with ability to use filtering phrases 
+      like &quot;HTML-php&quot; with exclude &quot;-&quot; and include &quot;+&quot; 
+      operators;</li>
+    <li>filtering by title, description, link is supported;</li>
+    <li>support for multiple RSS feeds to HTML conversion (via MultiRSS2HTML.asp 
+      included into PRO version);</li>
+    <li>tech support, help with customization and free updates within 12 months;</li>
+  </ul>
+  <h2>HTML template for RSS2HTML conversion</h2>
+  <p>PRO version uses the following HTML template code (you can adjust this code 
+    in helper <em>RSS2HTMLProForMultiRSS2HTML.asp</em> script to fit your design 
+    or contact us to help you if you are a registered user of PRO version):</p>
+  <p> <em>' ##### Main template constants<br />
+    ' ##### {CHANNELTITLE} will be replaced with item Channel Title<br />
+    ' ##### {CHANNELURL} will be replaced with item Channel Url<br />
+    MainTemplateHeader = &quot;&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;a href=&quot;&amp; 
+    &quot;&quot;&quot;{CHANNELURL}&quot;&quot;&quot; &amp; &quot;&gt;{CHANNELTITLE}&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&quot;<br />
+    MainTemplateFooter = &quot;&lt;/table&gt;&quot;<br />
+    ' ##### <br />
+    ' ##### Item template.<br />
+    ' ##### {LINK} will be replaced with item link<br />
+    ' ##### {TITLE} will be replaced with item title<br />
+    ' ##### {DESCRIPTION} will be replaced with item description<br />
+    ' ##### {DATE} will be replaced with item date and time<br />
+    ' ##### {COMMENTSLINK} will be replaced with link to comments (If you use 
+    RSS feed from blog)<br />
+    ' ##### {CATEGORY} will be replaced with item category<br />
+    ItemTemplate = &quot;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;{DATE} {TIME}&lt;/strong&gt;&lt;br/&gt;&lt;strong&gt;{CATEGORY}&lt;br/&gt;&lt;/strong&gt;&lt;a 
+    href=&quot; &amp; &quot;&quot;&quot;{LINK}&quot;&quot;&quot; &amp; &quot;&gt;{TITLE}&lt;/a&gt;&lt;BR&gt;{DESCRIPTION}&lt;/td&gt;&lt;/tr&gt;&quot;<br />
+    ' #### You can set Date and Time macros formatting:<br />
+    '#### Date Time format<br />
+    '#### dd - Day<br />
+    '#### DD - Full Day Name<br />
+    '#### mm - Month<br />
+    '#### MMMM - Full Month Name<br />
+    '#### yyyy - Year<br />
+    '#### HH - Hour<br />
+    '#### MM - Minute<br />
+    '#### SS - Second<br />
+    '#### Offset - Time offset from UTC<br />
+    DateTemplate = &quot;dd.mm.yyyy&quot;<br />
+    TimeTemplate = &quot;HH:MM:SS Offset&quot;</em></p>
+  <p>&nbsp;</p>
+  <h2> Converting and filtering multiple RSS feeds</h2>
+  <p> To add new RSS feed to process add URL to this feed into <strong>URLs</strong> 
+    array inside <strong>MultiRSS2HTML.asp </strong>script. For example:</p>
+  <p> <strong>' ##### Array RSS Sources #########<br />
+    URLs = Array( _<br />
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "http://digg.com/rss/indexprogramming.xml", 
+    _<br />
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "http://feeds.feedburner.com/MonkeyBites")</strong></p>
+  <p>Links to RSS feeds are separated by comma. _ symbol is used to break a line 
+    in ASP.</p>
+  <h2> Set keywords to filter content from RSS feeds:</h2>
+  <p> Use <strong>Keywords</strong> variable to set keywords for filtering RSS 
+    feed. Positive keywords must include &quot;+&quot; symbol or space and negative 
+    keywords are indicated by use of &quot;-&quot; symbol. For example (see screenshot 
+    below):<b> Keywords="Linux+device"<br />
+    </b> </p>
+  <img src="images/examples/multirss2html_produced_html_from_keywords_in_ie.png"
+            alt="multirss2html_produced_html_from_keywords_in_ie" /> 
+  <p>You can control filtering of RSS feeds by title, description or URL to full 
+    article by changing the following variables: </p>
+  <ul>
+    <li><b>FilterByTitle</b> - (set True or False) filter items from RSS by their 
+      titles</li>
+    <li><b>FilterByDescription</b> - (set True or False) filter items from RSS 
+      by their description<b>s</b></li>
+    <li><b>FilterByURL</b> - (set True or False) filter items from RSS by their 
+      links to full articles</li>
+  </ul>
+  <p>IMPORTANT: change these variables inside helper script <em>RSS2HTMLProForMultiRSS2HTML.asp 
+    </em>( included into PRO version)</p>
+  <h2> Include HTML from script into existing page:</h2>
+  <p> To include HTML generated by the script please use virtual include ASP command. 
+    <br />
+    Example:</p>
+  <p> <em>&lt; p&gt;RSS content is displayed below:&lt;/p&gt;<br />
+    &lt; hr&gt;<br />
+    &lt; !--#include file="MultiRSS2HTML.asp"--&gt;<br />
+    &lt; hr&gt;</em> </p>
+        <p>
+            <strong>
+                <img src="images/examples/multirss2html_produced_html_from_url_rss_use_on_html_page_in_ie.png" /></strong>&nbsp;</p>
+    </div>
+</body>
+</html>

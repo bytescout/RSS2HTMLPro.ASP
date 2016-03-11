@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>RSS2HTMLPro Tutorial</title>
+</head>
+<body>
+<div> 
+  <h1> RSS2HTMLPro Quick Start</h1>
+  <p>This page provides a quick guide on using RSS2HTMLPro.asp script (commercial 
+    vresion of freeware RSS2HTML.asp script) to display filtered content from 
+    RSS/XML feed on a web-page in ASP or ASP.NET environment.</p>
+  <p> You can use this script standalone or call from existing page to display 
+    filtered HTML content from RSS feed.</p>
+  <p> <strong>Benefits</strong> of PRO version:</p>
+</div>
+<ul>
+  <li> 
+    <div>better support for RSS and ATOM feeds;</div>
+  </li>
+  <li>multi-keywords filtering support with ability to use filtering phrases like 
+    &quot;HTML-php&quot; with exclude &quot;-&quot; and include &quot;+&quot; 
+    operators;</li>
+  <li>filtering by title, description, link is supported;</li>
+  <li>support for multiple RSS feeds to HTML conversion (via MultiRSS2HTML.asp 
+    included into PRO version);</li>
+  <li>tech support, help with customization and free updates within 12 months;</li>
+</ul>
+<p>See also: <a href="MultiRSS2HTML_Tutorial.htm">displaying content from multiple 
+  RSS feeds using PRO version</a></p>
+<h2>HTML template for RSS2HTML conversion</h2>
+<p>PRO version uses the following HTML template code (you can adjust this code 
+  to fit your design or contact us to help you if you are a registered user of 
+  PRO version):</p>
+<p> <em>' ##### Main template constants<br />
+  ' ##### {CHANNELTITLE} will be replaced with item Channel Title<br />
+  ' ##### {CHANNELURL} will be replaced with item Channel Url<br />
+  MainTemplateHeader = &quot;&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;a href=&quot;&amp; 
+  &quot;&quot;&quot;{CHANNELURL}&quot;&quot;&quot; &amp; &quot;&gt;{CHANNELTITLE}&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&quot;<br />
+  MainTemplateFooter = &quot;&lt;/table&gt;&quot;<br />
+  ' ##### <br />
+  ' ##### Item template.<br />
+  ' ##### {LINK} will be replaced with item link<br />
+  ' ##### {TITLE} will be replaced with item title<br />
+  ' ##### {DESCRIPTION} will be replaced with item description<br />
+  ' ##### {DATE} will be replaced with item date and time<br />
+  ' ##### {COMMENTSLINK} will be replaced with link to comments (If you use RSS 
+  feed from blog)<br />
+  ' ##### {CATEGORY} will be replaced with item category<br />
+  ItemTemplate = &quot;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;{DATE} {TIME}&lt;/strong&gt;&lt;br/&gt;&lt;strong&gt;{CATEGORY}&lt;br/&gt;&lt;/strong&gt;&lt;a 
+  href=&quot; &amp; &quot;&quot;&quot;{LINK}&quot;&quot;&quot; &amp; &quot;&gt;{TITLE}&lt;/a&gt;&lt;BR&gt;{DESCRIPTION}&lt;/td&gt;&lt;/tr&gt;&quot;<br />
+  ' #### You can set Date and Time macros formatting:<br />
+  '#### Date Time format<br />
+  '#### dd - Day<br />
+  '#### DD - Full Day Name<br />
+  '#### mm - Month<br />
+  '#### MMMM - Full Month Name<br />
+  '#### yyyy - Year<br />
+  '#### HH - Hour<br />
+  '#### MM - Minute<br />
+  '#### SS - Second<br />
+  '#### Offset - Time offset from UTC<br />
+  DateTemplate = &quot;dd.mm.yyyy&quot;<br />
+  TimeTemplate = &quot;HH:MM:SS Offset&quot;</em><br />
+</p>
+<div> 
+  <h2> Using URL to RSS feed and keywords passed as parameters:</h2>
+  <p>You can use hard coded URL to RSS feed or pass link to a feed as a parameter 
+    in URL to the script.</p>
+  <p>To pass RSS feed link as a parameter (so you can pass different RSS feeds 
+    to a one script) just set <strong>UseParametersFromURL</strong> variable inside 
+    RSS2HTMLPro.asp script to <strong>True</strong>.</p>
+  <p> Then pass URL to RSS feed as a &quot;<strong>URLToRSS</strong>&quot; parameter 
+    in URL like this: <b><br />
+    <br />
+    http://mywebsite.com/RSS2HTMLPro.asp?URLToRSS=http://digg.com/rss/indexprogramming.xml</b></p>
+  <p>Below is a screenshot of generated HTML content:</p>
+  <img src="images/examples/rss2htmlpro_produced_html_from_url_rss_in_ie.png"
+            alt="rss2htmlpro_produced_html_from_url_rss_in_ie" /> 
+  <p>To set filtering keywords use the following parameters:</p>
+</div>
+<ul>
+  <li><b>Keywords</b> - keywords string (use &quot;-&quot; and &quot;+&quot; operators 
+    to exclude/include keywords, for example: HTML-word, HTML+php)</li>
+  <li><b>FilterByTitle</b> - (set True or False) filter items from RSS by their 
+    titles</li>
+  <li><b>FilterByDescription</b> - (set True or False) filter items from RSS by 
+    their description<b>s</b></li>
+  <li><b>FilterByURL</b> - (set True or False) filter items from RSS by their 
+    links to full articles</li>
+</ul>
+<div>
+  <p>For example: <b>http://mywebsite.com/RSS2HTMLPro.asp?Keywords=HTML </b></p>
+  <p>Screenshot of generated HTML content (items from RSS were filtered by &quot;HTML&quot; 
+    keyword):</p>
+  <img src="images/examples/rss2htmlpro_produced_html_from_use_keywords_in_url_in_ie.png"
+            alt="rss2htmlpro_produced_html_from_use_keywords_in_url_in_ie" /> 
+  <p>Example: <b>RSS2HTMLPro.asp?Keywords=HTML-color+php</b></p>
+  <p>Screenshot of generated content below (items were filtered by &quot;HTML&quot; 
+    and &quot;PHP&quot; include keywords and excluding &quot;color&quot; negative 
+    keyword):</p>
+  <img src="images/examples/rss2htmlpro_produced_html_from_keywords_with_operator_exclude_in_url_in_ie.png"
+            alt="rss2htmlpro_produced_html_from_keywords_with_operator_exclude_in_url_in_ie" />
+  <h2> How to use script on existing web-pages:</h2>
+  <p> To call script from existing page please use virtual include ASP command: 
+    <em>&lt; !--#include file="RSS2HTMLPro.asp"--&gt;</em>. <br />
+    For example you can include HTML generated by RSS2HTMLPro.asp into Demo.asp 
+    page like this:</p>
+  <p> <em>&lt; p&gt;RSS content is displayed below:&lt;/p&gt;<br />
+    &lt; hr&gt;<br />
+    &lt; !--#include file="RSS2HTMLPro.asp"--&gt;<br />
+    &lt; hr&gt;</em> </p>
+  <p>IMPORTANT: If you call script without parameters in URL then make sure that 
+    you've set <strong>UseParametersFromURL</strong> variable inside script to 
+    False so script will use hardcoded parameters, not external parameters passed 
+    in URL</p>
+</div>
+</body>
+</html>
